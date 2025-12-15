@@ -10,10 +10,14 @@ Arctic Ultra Trainer is a specialized training planner for the Lappland Arctic U
 
 ```bash
 # Install dependencies
-npm install
+npm install --legacy-peer-deps
 
 # Run development server (http://localhost:3000)
 npm run dev
+
+# Run local proxy server for Runalyze API (http://localhost:3001)
+# Required for Runalyze integration to bypass CORS
+npm run proxy
 
 # Build for production
 npm run build
@@ -21,6 +25,10 @@ npm run build
 # Preview production build
 npm preview
 ```
+
+**Important**: For Runalyze API integration to work, you need **both** servers running:
+- Terminal 1: `npm run dev` (port 3000)
+- Terminal 2: `npm run proxy` (port 3001)
 
 ## Environment Setup
 
@@ -64,9 +72,14 @@ Key functions:
 
 ### Training Data Import
 
-**Runalyze Integration** (`services/runalyze.ts`):
-- Fetches activities via Runalyze API with token authentication
-- CORS handling: Direct fetch first, falls back to corsproxy.io if needed
+**Runalyze Integration** (`services/runalyze.ts` + `proxy-server.js`):
+- **Local Proxy Server**: Node.js/Express server on port 3001 that proxies Runalyze API requests to bypass CORS restrictions
+- **Fallback Chain**:
+  1. Try local proxy (`http://localhost:3001/api/runalyze/*`)
+  2. Try direct fetch (rarely works due to CORS)
+  3. Try public CORS proxies (corsproxy.io, allorigins.win, cors-anywhere)
+- **Authentication**: Multiple header variants tried (Bearer token, token header, X-Auth-Token, etc.)
+- **Data Format**: Runalyze API returns activities with `date_time` (ISO format), `duration` (seconds), `distance` (km)
 - Maps activities to `HistoryEntry` format (date, sport, duration_min, distance_km)
 
 **CSV Import** (`services/importer.ts`):
@@ -158,14 +171,18 @@ When multiple activities exist for same date:
 - Displays as single aggregated entry in UI
 - Used for comparing actual vs planned volume
 
-### CORS Handling for Runalyze
+### Critical Implementation Details
 
-Browser security prevents direct API calls to runalyze.com. The app uses:
-1. Direct fetch (works if CORS headers present)
-2. Fallback to corsproxy.io (public proxy)
-3. Manual CSV import as last resort
+**Timezone Handling**:
+- All date calculations use UTC methods (`Date.UTC()`, `getUTCDay()`, `setUTCDate()`) to avoid timezone offset bugs
+- Week calculation in `getFullWeekPlan()` determines Monday using UTC to prevent off-by-one errors
+- Without UTC, dates like "2025-12-08" would shift by -1 day in CET/CEST timezones
 
-Always prefer CSV import instructions for reliability.
+**Weekly Volume Chart** (`components/WeeklyVolumeChart.tsx`):
+- Past weeks (ended before today): Shows **IST** (actual hours from history) in green
+- Current week: Shows **SOLL** (planned hours) in orange
+- Future weeks: Shows **SOLL** (planned hours) in gray
+- Calculates actual hours by summing all `HistoryEntry.duration_min` for dates in week range
 
 ## AI Studio Context
 
