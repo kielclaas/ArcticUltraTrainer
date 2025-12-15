@@ -73,17 +73,17 @@ export const WEEKS: WeekConfig[] = [
   { range: "2025-11-17..2025-11-23", hours_target: 12.5, long_sat: [225, 225] },
   { range: "2025-11-24..2025-11-30", hours_target: 8.0, long_sat: [135, 135] }, // Deload
   { range: "2025-12-01..2025-12-07", hours_target: 12.8, long_sat: [240, 240] },
-  { range: "2025-12-08..2025-12-14", hours_target: 13.5, long_sat: [260, 280] },
-  { range: "2025-12-15..2025-12-21", hours_target: 13.8, long_sat: [280, 300] },
-  { range: "2025-12-22..2025-12-28", hours_target: 8.5, long_sat: [135, 150] }, // Deload
-  { range: "2025-12-29..2026-01-04", hours_target: 10.0, long_sat: [195, 210] },
-  { range: "2026-01-05..2026-01-11", hours_target: 12.0 }, // Deload
-  { range: "2026-01-12..2026-01-18", hours_target: 11.5, long_sat: [270, 300] },
-  { range: "2026-01-19..2026-01-25", hours_target: 15.0, long_sat: [300, 320], b2b_sun: [150, 180] },
-  { range: "2026-01-26..2026-02-01", hours_target: 15.0, special: "mini_expedition" },
+  { range: "2025-12-08..2025-12-14", hours_target: 3.5, long_sat: [90, 120] }, // Teilwoche (nur Sa-So)
+  { range: "2025-12-15..2025-12-21", hours_target: 11.4, long_sat: [180, 180] },
+  { range: "2025-12-22..2025-12-28", hours_target: 11.25, long_sat: [225, 225] }, // Angepasst: Weihnachten
+  { range: "2025-12-29..2026-01-04", hours_target: 14.25, long_sat: [255, 255] },
+  { range: "2026-01-05..2026-01-11", hours_target: 10.6, long_sat: [180, 180] }, // Deload
+  { range: "2026-01-12..2026-01-18", hours_target: 15.6, long_sat: [300, 300] },
+  { range: "2026-01-19..2026-01-25", hours_target: 17.0, long_sat: [330, 330], b2b_sun: [270, 270] },
+  { range: "2026-01-26..2026-02-01", hours_target: 17.7, special: "mini_expedition" },
   { range: "2026-02-02..2026-02-08", hours_target: 15.5, long_sat: [300, 300] },
   { range: "2026-02-09..2026-02-15", hours_target: 16.5, special: "4x4x48" },
-  { range: "2026-02-16..2026-02-22", hours_target: 5.2 },
+  { range: "2026-02-16..2026-02-22", hours_target: 11.2, long_sat: [255, 270] },
   { range: "2026-02-23..2026-03-01", hours_target: 2.8, special: "race_week" },
 ];
 
@@ -150,16 +150,16 @@ export const DAILY_OVERRIDES: Record<string, { primary: TrainingSession, alterna
     alternative: { label: "Incline-Hike", discipline: "hike", duration_text: "75-90m", intensity: "EASY", notes: [] }
   },
   "2025-12-24": {
-    primary: { label: "Kraft (Ganzkörper) + Walk", discipline: "strength", duration_text: "45m + 20m", intensity: "STRENGTH", notes: ["FOKUS: Robustheit; kein Muskelkater erzwingen"] },
-    alternative: { label: "Zwift Z2", discipline: "virtualride", duration_text: "45-60m", intensity: "Z2", notes: [] }
+    primary: { label: "Spaziergang oder Mobility", discipline: "recovery", duration_text: "60m", intensity: "VERY_EASY", notes: ["FOKUS: Heiligabend - nur locker bewegen, max 1h"] },
+    alternative: { label: "Zwift Z1", discipline: "virtualride", duration_text: "45-60m", intensity: "Z1", notes: [] }
   },
   "2025-12-25": {
-    primary: { label: "Ziehen light (Pulk/Tire) ODER Incline-Hike", discipline: "pulka", duration_text: "60-75m", intensity: "STEADY", notes: ["FOKUS: Technik vor Gewicht; Rücken neutral"] },
-    alternative: { label: "Ruck", discipline: "ruck", duration_text: "75-90m", intensity: "EASY", notes: ["Pack light"] }
+    primary: { label: "Ruhetag - Weihnachten", discipline: "recovery", duration_text: "0m", intensity: "REST", notes: ["FOKUS: Kompletter Ruhetag, Familie, Regeneration"] },
+    alternative: { label: "Spaziergang optional", discipline: "recovery", duration_text: "30m", intensity: "VERY_EASY", notes: ["nur wenn du möchtest"] }
   },
   "2025-12-26": {
-    primary: { label: "Zwift Z1", discipline: "virtualride", duration_text: "60-75m", intensity: "EASY", notes: ["FOKUS: Locker + Maintenance 6-8m"] },
-    alternative: { label: "Rudern locker", discipline: "row", duration_text: "45m", intensity: "EASY", notes: [] }
+    primary: { label: "Spaziergang locker", discipline: "recovery", duration_text: "60m", intensity: "VERY_EASY", notes: ["FOKUS: 2. Weihnachtstag - locker, max 1h"] },
+    alternative: { label: "Zwift Z1", discipline: "virtualride", duration_text: "45-60m", intensity: "Z1", notes: [] }
   },
   "2025-12-27": {
     primary: { label: "Long 1: Ruck EASY", discipline: "ruck", duration_text: "3h45", intensity: "EASY", notes: ["FOKUS: Split ok; Fuel/Hands/Layer testen"] },
