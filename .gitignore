@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Screenshots (optional - remove if you want to commit them)
+*.png
+*.jpg
+*.jpeg
+
+# Firebase config (keep placeholder, ignore real config)
+# Uncomment if you add real Firebase credentials:
+# src/services/firebase.ts
+*.zip

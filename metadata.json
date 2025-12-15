@@ -1,0 +1,5 @@
+{
+  "name": "Arctic Ultra Trainer",
+  "description": "A specialized training suggestion engine for the Lappland Arctic Ultra 2026. Generates daily workouts based on date and sport preference using a periodized training plan.",
+  "requestFramePermissions": []
+}
