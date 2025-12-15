@@ -77,12 +77,12 @@ export const WEEKS: WeekConfig[] = [
   { range: "2025-12-15..2025-12-21", hours_target: 13.8, long_sat: [280, 300] },
   { range: "2025-12-22..2025-12-28", hours_target: 8.5, long_sat: [135, 150] }, // Deload
   { range: "2025-12-29..2026-01-04", hours_target: 10.0, long_sat: [195, 210] },
-  { range: "2026-01-05..2026-01-11", hours_target: 12.0, special: "4x4x48" },
+  { range: "2026-01-05..2026-01-11", hours_target: 12.0 }, // Deload
   { range: "2026-01-12..2026-01-18", hours_target: 11.5, long_sat: [270, 300] },
   { range: "2026-01-19..2026-01-25", hours_target: 15.0, long_sat: [300, 320], b2b_sun: [150, 180] },
   { range: "2026-01-26..2026-02-01", hours_target: 15.0, special: "mini_expedition" },
   { range: "2026-02-02..2026-02-08", hours_target: 8.5, long_sat: [150, 165] },
-  { range: "2026-02-09..2026-02-15", hours_target: 7.0 },
+  { range: "2026-02-09..2026-02-15", hours_target: 16.5, special: "4x4x48" },
   { range: "2026-02-16..2026-02-22", hours_target: 5.2 },
   { range: "2026-02-23..2026-03-01", hours_target: 2.8, special: "race_week" },
 ];
